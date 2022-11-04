@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Entity : MonoBehaviour
 {
     protected Manager manager;
 
@@ -15,10 +15,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Interaction();
+
     }
 
-    protected float GetSquaredDistanceBetween(GameObject entity)
+    public float GetSquaredDistanceBetween(GameObject entity)
     {
         // Vehicle center, x coord
         float playerCenterX = gameObject.GetComponent<CapsuleCollider>().bounds.center.x;
@@ -36,15 +36,5 @@ public class Player : MonoBehaviour
         return distanceSquared;
     }
 
-    private void Interaction()
-    {
-        foreach (GameObject button in manager.buttons)
-        {
-            float distBetween = Mathf.Sqrt(GetSquaredDistanceBetween(button));
-            if (distBetween < 5) // Every Unity unit is exactly 10 Cartesian units. Therefore 5 Unity units away is 50 Cartesian units away
-            {
-                Debug.Log("Interaction detected between player and button: " + button.name);
-            }
-        }
-    }
+    
 }
