@@ -20,17 +20,17 @@ public class Entity : MonoBehaviour
 
     public float GetSquaredDistanceBetween(GameObject entity)
     {
-        // Vehicle center, x coord
-        float playerCenterX = gameObject.GetComponent<CapsuleCollider>().bounds.center.x;
+        // Entity one center, x coord
+        float entity1CenterX = gameObject.GetComponent<CapsuleCollider>().bounds.center.x;
         // Vehicle center, y coord
-        float playerCenterZ = gameObject.GetComponent<CapsuleCollider>().bounds.center.z;
+        float entity1CenterZ = gameObject.GetComponent<CapsuleCollider>().bounds.center.z;
         // Entity center, x coord
-        float entityCenterX = entity.GetComponent<CapsuleCollider>().bounds.center.x;
+        float entity2CenterX = entity.GetComponent<CapsuleCollider>().bounds.center.x;
         // Entity center, y coord
-        float entityCenterZ = entity.GetComponent<CapsuleCollider>().bounds.center.z;
+        float entity2CenterZ = entity.GetComponent<CapsuleCollider>().bounds.center.z;
 
         // Distance between vehicle and entity's center squared
-        float distanceSquared = Mathf.Pow((playerCenterX - entityCenterX), 2) + Mathf.Pow((playerCenterZ - entityCenterZ), 2);
+        float distanceSquared = Mathf.Pow((entity1CenterX - entity2CenterX), 2) + Mathf.Pow((entity1CenterZ - entity2CenterZ), 2);
 
         // Distance between vehicle and entity
         return distanceSquared;
