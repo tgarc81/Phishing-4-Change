@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //fishPopTB = GetComponent<Text>();
-        fishPop = 100;
+        fishPop = 500;
         dayNumber = 1;
         caughtFish = 0;
         dayEnd = false;
@@ -30,12 +30,22 @@ public class GameManager : MonoBehaviour
         fishPopTB.GetComponent<Text>().text = "Fish Population: " + fishPop.ToString();
         dayCounter.GetComponent<Text>().text = "Day: " + dayNumber.ToString();
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PlaceBasketTrap();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            dayEnd = true;
+        }
 
         if (dayEnd == true)
         {
             dayNumber++;
             FishPopulationChange();
             dayEnd = false;
+            caughtFish = 0;
             return;
         }
     }
@@ -43,19 +53,47 @@ public class GameManager : MonoBehaviour
     public void FishPopulationChange()
     {
         fishPop -= caughtFish;
-        // Balanced Population Change
-        if (fishPop >= 75)
+
+        if (fishPop >= 1000)
         {
-            fishPop += 15;
+            fishPop = (fishPop / 2) - 50;
+        }
+
+        // Balanced Population Change
+        if (fishPop >= 350)
+        {
+            fishPop += 20;
         }
         // Negative Population Change
-        if (fishPop >= 150)
+        else if (fishPop < 350 && fishPop >= 200)
         {
-            fishPop -= fishPop / 2;
+            fishPop += 10;
         }
-        else
+        else if (fishPop < 200)
         {
-            fishPop += 7;
+            fishPop -= 50;
         }
+
+        if (fishPop <= 0)
+        {
+            Debug.Log("FISH POPULATION DECIMATED! GAME OVER!");
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
+        }
+    }
+
+    public void PlaceBasketTrap()
+    {
+        caughtFish += 5;
+    }
+
+    public void PlaceRod()
+    {
+        caughtFish += 10;
+    }
+
+    public void NetFishing()
+    {
+        caughtFish += 40;
     }
 }
