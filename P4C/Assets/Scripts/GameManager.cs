@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
 
     public void PlaceBasketTrap()
     {
+        Debug.Log("Placed Basket Trap");
         caughtFish += 5;
     }
 
