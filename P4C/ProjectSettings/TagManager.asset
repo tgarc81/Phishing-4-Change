@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - TrapLocation
+  - RodLocation
+  - Text1
   layers:
   - Default
   - TransparentFX
