@@ -64,7 +64,7 @@ public class Movement : MonoBehaviour
         if (rodTrigger && Input.GetKeyDown(KeyCode.R))
         {
             rodSpot.SetActive(false);
-            PlaceRod(locationSaver);
+            PlaceRod(locationSaver, new Quaternion(0,180,0,1));
             rodTrigger = false;
             popUpText.gameObject.SetActive(false);
 
@@ -115,11 +115,11 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void PlaceRod(Vector3 location)
+    public void PlaceRod(Vector3 location, Quaternion rotation)
     {
         //Debug.Log("Try Instantiate");
         gameManager.PlaceRod();
-        Instantiate(rod, location, Quaternion.identity);
+        Instantiate(rod, location, rotation);
         for (int i = 0; i < gameManager.fishingRods.Length; i++)
         {
             if (gameManager.fishingRods[i] != null)
