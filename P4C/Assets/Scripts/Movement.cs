@@ -27,23 +27,28 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey (KeyCode.LeftShift) && Input.GetKey("w")) {
-            transform.position += transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed * 2.5f;
+        if (Input.GetKey (KeyCode.LeftShift) && Input.GetKey("w")) 
+        {
+            transform.position += transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 1.8f;
         } 
+
         else if (Input.GetKey("w") && !Input.GetKey (KeyCode.LeftShift))
         {
-            transform.position += transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed;
-        }
-        else if (Input.GetKey ("s"))
-        {
-            transform.position -= transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed;
+            transform.position -= transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 1.8f;
         }
 
-        if(Input.GetKey("a") && !Input.GetKey ("d")) {
-            transform.position += transform.TransformDirection (Vector3.left) * Time.deltaTime * movementSpeed;
+        else if (Input.GetKey ("s"))
+        {
+            transform.position += transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 1.8f;
         }
-        else if (Input.GetKey ("d") && !Input.GetKey ("a")) {
-            transform.position -= transform.TransformDirection(Vector3.left) * Time.deltaTime* movementSpeed;
+
+        if(Input.GetKey("a") && !Input.GetKey ("d")) 
+        {
+            transform.position += transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed * 1.8f;
+        }
+        else if (Input.GetKey ("d") && !Input.GetKey ("a"))
+        {
+            transform.position -= transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed * 1.8f;
         }
 
 
