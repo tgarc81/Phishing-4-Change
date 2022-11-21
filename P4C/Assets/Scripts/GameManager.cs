@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         if (fishPop <= 0)
         {
             Debug.Log("FISH POPULATION DECIMATED! GAME OVER!");
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
     }
