@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Security.Cryptography;
 
 public class GameManager : MonoBehaviour
 {
    [SerializeField]public  Text fishPopTB;
    [SerializeField]public  Text dayCounter;
+    [SerializeField] public Text moneyCount;
     public int fishPop;
     public int dayNumber = 1;
     public int caughtFish;
     public bool dayEnd = false;
+
+    public int money; // the amount of money the player has
 
     public GameObject[] trapLocations;
     public GameObject[] rodLocations;
@@ -23,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         fishPop = 500;
         dayNumber = 1;
+        money = 0;
         //caughtFish = 0;
         dayEnd = false;
 
@@ -36,6 +41,7 @@ public class GameManager : MonoBehaviour
         // Recording the UI Elements
         fishPopTB.GetComponent<Text>().text = "Fish Population: " + fishPop.ToString();
         dayCounter.GetComponent<Text>().text = "Day: " + dayNumber.ToString();
+        moneyCount.GetComponent<Text>().text = "Money: " + money.ToString();
 
         // Keybind for ending day
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -114,17 +120,23 @@ public class GameManager : MonoBehaviour
     public void PlaceBasketTrap()
     {
         //fishPop -= Random.Range(0, 5);
-        caughtFish += Random.Range(0, 5);
+        int randNum = Random.Range(0, 5);
+        caughtFish += randNum;
+        money += randNum;
     }
 
     public void PlaceRod()
     {
         //fishPop -= Random.Range(5,10);
-        caughtFish += Random.Range(5, 10);
+        int randNum = Random.Range(5, 10);
+        caughtFish += randNum;
+        money += randNum;
     }
 
     public void NetFishing()
     {
-        //fishPop -= Random.Range(10,40);
+        // int randNum = Random.Range(10, 40);
+        //fishPop -= randNum;
+        // money += caughtFish;
     }
 }
