@@ -92,6 +92,12 @@ public class Movement : MonoBehaviour
             popUpText.gameObject.SetActive(true);
             popUpText.gameObject.GetComponent<Text>().text = "Press R to place Fishing Rod";
         }
+
+        if (other.gameObject.name == "House")
+        {
+            Debug.Log("We Have collided w the house boys...");
+            // MAKE THE UI FOR SHOPS POP UP
+        }
     }
 
     private void OnTriggerExit(Collider other)
