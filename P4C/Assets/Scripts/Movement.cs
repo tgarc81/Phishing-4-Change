@@ -10,13 +10,23 @@ public class Movement : MonoBehaviour
     [SerializeField] GameManager gameManager;
     public float movementSpeed = 2;
     public Vector3 locationSaver;
+    [SerializeField] GameObject popUpText;
+
+    // trap variables
     [SerializeField] public GameObject trap;
-    [SerializeField] public GameObject rod;
     public GameObject trapSpot;
     bool trapTrigger;
+
+    // rod variables
+    [SerializeField] public GameObject rod;
     public GameObject rodSpot;
     bool rodTrigger;
-    [SerializeField] GameObject popUpText;
+
+    // boat variables
+    [SerializeField] public GameObject boat;
+    public GameObject boatSpot;
+    bool boatTrigger;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +37,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Movement -------------------------------------------------------------------------------------------------
         if (Input.GetKey (KeyCode.LeftShift) && Input.GetKey("w")) 
         {
             transform.position += transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 1.8f;
@@ -50,15 +61,15 @@ public class Movement : MonoBehaviour
         {
             transform.position -= transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed * 1.8f;
         }
+        //----------------------------------------------------------------------------------------------------------------
 
-
+        // Placement Controls-----------------------------------------------------
         if (trapTrigger && Input.GetKeyDown(KeyCode.T))
         {
             trapSpot.SetActive(false);
             PlaceTrap(locationSaver);
             trapTrigger = false;
             popUpText.gameObject.SetActive(false);
-
         }
 
         if (rodTrigger && Input.GetKeyDown(KeyCode.R))
@@ -67,7 +78,14 @@ public class Movement : MonoBehaviour
             PlaceRod(locationSaver, new Quaternion(0,180,0,1));
             rodTrigger = false;
             popUpText.gameObject.SetActive(false);
+        }
 
+        if (boatTrigger && Input.GetKeyDown(KeyCode.B))
+        {
+            boatSpot.SetActive(false);
+            PlaceBoat(locationSaver);
+            boatTrigger = false;
+            popUpText.gameObject.SetActive(false);
         }
     }
 
@@ -91,6 +109,15 @@ public class Movement : MonoBehaviour
             rodTrigger = true;
             popUpText.gameObject.SetActive(true);
             popUpText.gameObject.GetComponent<Text>().text = "Press R to place Fishing Rod";
+        }
+
+        if (other.CompareTag("BoatLocation") && other.gameObject.activeInHierarchy == true)
+        {
+            boatSpot = other.gameObject;
+            locationSaver = other.gameObject.transform.position;
+            boatTrigger = true;
+            popUpText.gameObject.SetActive(true);
+            popUpText.gameObject.GetComponent<Text>().text = "Press B to send out fishing boat";
         }
     }
 
@@ -127,5 +154,19 @@ public class Movement : MonoBehaviour
                 gameManager.fishingRods[i] = rod;
             }
         }
+    }
+
+    public void PlaceBoat(Vector3 location)
+    {
+        //Debug.Log("Try Instantiate");
+        gameManager.PlaceBoat();
+        //Instantiate(boat, new Vector3(location.x + 0.5f, location.y - .2f, location.z), Quaternion.identity);
+        //for (int i = 0; i < gameManager.fishingBoats.Length; i++)
+        //{
+        //    if (gameManager.fishingBoats[i] != null)
+        //    {
+        //        gameManager.fishingBoats[i] = boat;
+        //    }
+        //}
     }
 }

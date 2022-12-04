@@ -9,6 +9,8 @@ TagManager:
   - Text1
   - Trap
   - Rod
+  - boat
+  - BoatLocation
   layers:
   - Default
   - TransparentFX

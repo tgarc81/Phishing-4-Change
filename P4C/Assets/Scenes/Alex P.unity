@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 4945984847632944202, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5008918904717317944, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -593,6 +597,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishingRod
       objectReference: {fileID: 0}
+    - target: {fileID: 4202106961633481236, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8195709805304376819, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -732,6 +740,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap
       objectReference: {fileID: 0}
+    - target: {fileID: 4945984847632944202, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5008918904717317944, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -821,8 +833,10 @@ MonoBehaviour:
   money: 0
   trapLocations: []
   rodLocations: []
+  boatLocations: []
   fishingTraps: []
   fishingRods: []
+  fishingBoats: []
 --- !u!4 &439142307
 Transform:
   m_ObjectHideFlags: 0
@@ -958,7 +972,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -971,11 +985,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521255923}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.020000003, y: 0.009999998, z: 0.020000003}
-  m_Center: {x: -4.656613e-10, y: 0.0049999994, z: -0.000000001862645}
+  m_Size: {x: 0.028304027, y: 0.020414028, z: 0.020000003}
+  m_Center: {x: -0.004152016, y: -0.00020697889, z: -0.0000000021323827}
 --- !u!1001 &600918676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1071,11 +1085,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a88cb19e354b9824daabfba7a947ad6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0007323878
+      value: -0.000695
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a88cb19e354b9824daabfba7a947ad6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0025
+      value: 0.00473
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a88cb19e354b9824daabfba7a947ad6f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1117,6 +1131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boat (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a88cb19e354b9824daabfba7a947ad6f, type: 3}
+      propertyPath: m_TagString
+      value: BoatLocation
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a88cb19e354b9824daabfba7a947ad6f, type: 3}
 --- !u!1001 &629745050
@@ -1133,6 +1151,10 @@ PrefabInstance:
     - target: {fileID: 4945984847632944202, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
       propertyPath: m_Name
       value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945984847632944202, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5008918904717317944, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1220,7 +1242,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 34.09, y: -201.3}
-  m_SizeDelta: {x: 400, y: 40}
+  m_SizeDelta: {x: 800, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &629972039
 MonoBehaviour:
@@ -1244,11 +1266,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1418,6 +1440,10 @@ PrefabInstance:
     - target: {fileID: 4202106961633481236, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
       propertyPath: m_Name
       value: FishingRod
+      objectReference: {fileID: 0}
+    - target: {fileID: 4202106961633481236, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8195709805304376819, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
       propertyPath: m_RootOrder
@@ -1693,7 +1719,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1706,11 +1732,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931673667}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.020000003, y: 0.009999999, z: 0.020000003}
-  m_Center: {x: 0.0000000013969839, y: 0.005, z: -0.000000001862645}
+  m_Size: {x: 0.030031605, y: 0.017505076, z: 0.020000003}
+  m_Center: {x: 0.0050157993, y: 0.0012474745, z: -0.0000000021323827}
 --- !u!1 &974775117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,11 +2144,13 @@ MonoBehaviour:
   gameManager: {fileID: 439142306}
   movementSpeed: 5
   locationSaver: {x: 0, y: 0, z: 0}
-  trap: {fileID: 4945984847632944202, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
-  rod: {fileID: 4202106961633481236, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
-  trapSpot: {fileID: 0}
-  rodSpot: {fileID: 0}
   popUpText: {fileID: 629972037}
+  trap: {fileID: 4945984847632944202, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
+  trapSpot: {fileID: 0}
+  rod: {fileID: 4202106961633481236, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
+  rodSpot: {fileID: 0}
+  boat: {fileID: 0}
+  boatSpot: {fileID: 0}
 --- !u!135 &1336769085
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2318,6 +2346,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishingRod
       objectReference: {fileID: 0}
+    - target: {fileID: 4202106961633481236, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8195709805304376819, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2387,6 +2419,10 @@ PrefabInstance:
     - target: {fileID: 4202106961633481236, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
       propertyPath: m_Name
       value: FishingRod
+      objectReference: {fileID: 0}
+    - target: {fileID: 4202106961633481236, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5467617618204142996, guid: dc16732074a520f4691f15fadabf1c44, type: 3}
       propertyPath: m_Materials.Array.size
@@ -2565,7 +2601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a88cb19e354b9824daabfba7a947ad6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0046
+      value: 0.0048
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a88cb19e354b9824daabfba7a947ad6f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2606,6 +2642,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a88cb19e354b9824daabfba7a947ad6f, type: 3}
       propertyPath: m_Name
       value: Boat
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a88cb19e354b9824daabfba7a947ad6f, type: 3}
+      propertyPath: m_TagString
+      value: BoatLocation
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a88cb19e354b9824daabfba7a947ad6f, type: 3}
@@ -2753,6 +2793,10 @@ PrefabInstance:
     - target: {fileID: 4945984847632944202, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
       propertyPath: m_Name
       value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945984847632944202, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5008918904717317944, guid: 7abf1ad0e9ac4734e9cda66eb0585055, type: 3}
       propertyPath: m_Materials.Array.data[0]

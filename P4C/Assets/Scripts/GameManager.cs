@@ -19,8 +19,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] trapLocations;
     public GameObject[] rodLocations;
+    public GameObject[] boatLocations;
     public GameObject[] fishingTraps;
     public GameObject[] fishingRods;
+    public GameObject[] fishingBoats;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
 
         trapLocations = GameObject.FindGameObjectsWithTag("TrapLocation");
         rodLocations = GameObject.FindGameObjectsWithTag("RodLocation");
+        boatLocations = GameObject.FindGameObjectsWithTag("BoatLocation");
     }
 
     // Update is called once per frame
@@ -62,7 +65,7 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(t);
             }
-
+            
             foreach (GameObject r in fishingRods)
             {
                 Destroy(r);
@@ -77,6 +80,11 @@ public class GameManager : MonoBehaviour
             foreach (GameObject r in rodLocations)
             {
                 r.gameObject.SetActive(true);
+            }
+
+            foreach (GameObject b in boatLocations)
+            {
+                b.gameObject.SetActive(true);
             }
 
             return;
@@ -133,10 +141,10 @@ public class GameManager : MonoBehaviour
         money += randNum;
     }
 
-    public void NetFishing()
+    public void PlaceBoat()
     {
-        // int randNum = Random.Range(10, 40);
-        //fishPop -= randNum;
-        // money += caughtFish;
+        int randNum = Random.Range(10, 40);
+        fishPop -= randNum;
+        money += caughtFish;
     }
 }
