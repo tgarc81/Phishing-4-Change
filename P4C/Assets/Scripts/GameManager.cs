@@ -149,4 +149,30 @@ public class GameManager : MonoBehaviour
         fishPop -= randNum;
         money += caughtFish;
     }
+
+
+    public void LoadMainMenu()
+    {
+        Debug.Log("Loading Main Menu...");
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void PlayGame()
+    {
+        Debug.Log("Loading Game...");
+        SceneManager.LoadScene("Alex P");
+    }
+
+
+
+    public void LoadInstructions()
+    {
+        Debug.Log("Loading Instructions...");
+        SceneManager.LoadScene("Instructions");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
