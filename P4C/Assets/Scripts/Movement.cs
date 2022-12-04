@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
     public float movementSpeed = 2;
     public Vector3 locationSaver;
     [SerializeField] GameObject popUpText;
+    [SerializeField] GameObject storeHUD;
+    [SerializeField] GameObject gameHUD;
 
     // trap variables
     [SerializeField] public GameObject trap;
@@ -26,7 +28,7 @@ public class Movement : MonoBehaviour
     [SerializeField] public GameObject boat;
     public GameObject boatSpot;
     bool boatTrigger;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,26 +40,26 @@ public class Movement : MonoBehaviour
     void Update()
     {
         // Movement -------------------------------------------------------------------------------------------------
-        if (Input.GetKey (KeyCode.LeftShift) && Input.GetKey("w")) 
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey("w"))
         {
             transform.position += transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 1.8f;
-        } 
+        }
 
-        else if (Input.GetKey("w") && !Input.GetKey (KeyCode.LeftShift))
+        else if (Input.GetKey("w") && !Input.GetKey(KeyCode.LeftShift))
         {
             transform.position -= transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 1.8f;
         }
 
-        else if (Input.GetKey ("s"))
+        else if (Input.GetKey("s"))
         {
             transform.position += transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 1.8f;
         }
 
-        if(Input.GetKey("a") && !Input.GetKey ("d")) 
+        if (Input.GetKey("a") && !Input.GetKey("d"))
         {
             transform.position += transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed * 1.8f;
         }
-        else if (Input.GetKey ("d") && !Input.GetKey ("a"))
+        else if (Input.GetKey("d") && !Input.GetKey("a"))
         {
             transform.position -= transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed * 1.8f;
         }
@@ -75,7 +77,7 @@ public class Movement : MonoBehaviour
         if (rodTrigger && Input.GetKeyDown(KeyCode.R))
         {
             rodSpot.SetActive(false);
-            PlaceRod(locationSaver, new Quaternion(0,180,0,1));
+            PlaceRod(locationSaver, new Quaternion(0, 180, 0, 1));
             rodTrigger = false;
             popUpText.gameObject.SetActive(false);
         }
@@ -118,59 +120,69 @@ public class Movement : MonoBehaviour
             boatTrigger = true;
             popUpText.gameObject.SetActive(true);
             popUpText.gameObject.GetComponent<Text>().text = "Press B to send out fishing boat";
+        }
+
         if (other.gameObject.name == "House")
         {
             Debug.Log("We Have collided w the house boys...");
             // MAKE THE UI FOR SHOPS POP UP
+            storeHUD.gameObject.SetActive(true);
+            gameHUD.gameObject.SetActive(false);
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        popUpText.gameObject.SetActive(false);
-        trapTrigger = false;
-        rodTrigger = false;
-    }
-
-    public void PlaceTrap(Vector3 location)
-    {
-        //Debug.Log("Try Instantiate");
-        gameManager.PlaceBasketTrap();
-        Instantiate(trap, location, Quaternion.identity);
-        for (int i = 0; i < gameManager.fishingTraps.Length; i++)
+        void OnTriggerExit(Collider other)
         {
-            if (gameManager.fishingTraps[i] != null) 
+            popUpText.gameObject.SetActive(false);
+            trapTrigger = false;
+            rodTrigger = false;
+        }
+
+        void PlaceTrap(Vector3 location)
+        {
+            //Debug.Log("Try Instantiate");
+            gameManager.PlaceBasketTrap();
+            Instantiate(trap, location, Quaternion.identity);
+            for (int i = 0; i < gameManager.fishingTraps.Length; i++)
             {
-                gameManager.fishingTraps[i] = trap;
+                if (gameManager.fishingTraps[i] != null)
+                {
+                    gameManager.fishingTraps[i] = trap;
+                }
             }
         }
-    }
 
-    public void PlaceRod(Vector3 location, Quaternion rotation)
-    {
-        //Debug.Log("Try Instantiate");
-        gameManager.PlaceRod();
-        Instantiate(rod, location, rotation);
-        for (int i = 0; i < gameManager.fishingRods.Length; i++)
+        void PlaceRod(Vector3 location, Quaternion rotation)
         {
-            if (gameManager.fishingRods[i] != null)
+            //Debug.Log("Try Instantiate");
+            gameManager.PlaceRod();
+            Instantiate(rod, location, rotation);
+            for (int i = 0; i < gameManager.fishingRods.Length; i++)
             {
-                gameManager.fishingRods[i] = rod;
+                if (gameManager.fishingRods[i] != null)
+                {
+                    gameManager.fishingRods[i] = rod;
+                }
             }
         }
-    }
 
-    public void PlaceBoat(Vector3 location)
+        void PlaceBoat(Vector3 location)
+        {
+            //Debug.Log("Try Instantiate");
+            gameManager.PlaceBoat();
+            //Instantiate(boat, new Vector3(location.x + 0.5f, location.y - .2f, location.z), Quaternion.identity);
+            //for (int i = 0; i < gameManager.fishingBoats.Length; i++)
+            //{
+            //    if (gameManager.fishingBoats[i] != null)
+            //    {
+            //        gameManager.fishingBoats[i] = boat;
+            //    }
+            //}
+        }
+
+    public void CloseStore()
     {
-        //Debug.Log("Try Instantiate");
-        gameManager.PlaceBoat();
-        //Instantiate(boat, new Vector3(location.x + 0.5f, location.y - .2f, location.z), Quaternion.identity);
-        //for (int i = 0; i < gameManager.fishingBoats.Length; i++)
-        //{
-        //    if (gameManager.fishingBoats[i] != null)
-        //    {
-        //        gameManager.fishingBoats[i] = boat;
-        //    }
-        //}
+        storeHUD.gameObject.SetActive(false);
+        gameHUD.gameObject.SetActive(true);
     }
 }
+

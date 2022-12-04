@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
 {
    [SerializeField]public  Text fishPopTB;
    [SerializeField]public  Text dayCounter;
-    [SerializeField] public Text moneyCount;
+   [SerializeField] public Text moneyCount;
+   [SerializeField] public Text moneyCountForStore;
     public int fishPop;
     public int dayNumber = 1;
     public int caughtFish;
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         fishPopTB.GetComponent<Text>().text = "Fish Population: " + fishPop.ToString();
         dayCounter.GetComponent<Text>().text = "Day: " + dayNumber.ToString();
         moneyCount.GetComponent<Text>().text = "Money: " + money.ToString();
+        moneyCountForStore.GetComponent<Text>().text = "Money: " + money.ToString();
 
         // Keybind for ending day
         if (Input.GetKeyDown(KeyCode.Escape))
