@@ -118,6 +118,10 @@ public class Movement : MonoBehaviour
             boatTrigger = true;
             popUpText.gameObject.SetActive(true);
             popUpText.gameObject.GetComponent<Text>().text = "Press B to send out fishing boat";
+        if (other.gameObject.name == "House")
+        {
+            Debug.Log("We Have collided w the house boys...");
+            // MAKE THE UI FOR SHOPS POP UP
         }
     }
 
