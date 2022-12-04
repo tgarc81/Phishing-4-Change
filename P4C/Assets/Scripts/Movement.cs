@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Movement : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
-    public float movementSpeed = 2;
+    public float movementSpeed = 4;
     public Vector3 locationSaver;
     [SerializeField] GameObject popUpText;
     [SerializeField] GameObject storeHUD;
@@ -42,26 +42,26 @@ public class Movement : MonoBehaviour
         // Movement -------------------------------------------------------------------------------------------------
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey("w"))
         {
-            transform.position += transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 1.8f;
-        }
+            transform.position += transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 2.0f;
+        } 
 
         else if (Input.GetKey("w") && !Input.GetKey(KeyCode.LeftShift))
         {
-            transform.position -= transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 1.8f;
+            transform.position -= transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 2.0f;
         }
 
         else if (Input.GetKey("s"))
         {
-            transform.position += transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 1.8f;
+            transform.position += transform.TransformDirection(Vector3.left) * Time.deltaTime * movementSpeed * 2.0f;
         }
 
         if (Input.GetKey("a") && !Input.GetKey("d"))
         {
-            transform.position += transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed * 1.8f;
+            transform.position += transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed * 2.0f;
         }
         else if (Input.GetKey("d") && !Input.GetKey("a"))
         {
-            transform.position -= transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed * 1.8f;
+            transform.position -= transform.TransformDirection(Vector3.forward) * Time.deltaTime * movementSpeed * 2.0f;
         }
         //----------------------------------------------------------------------------------------------------------------
 
