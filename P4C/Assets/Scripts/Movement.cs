@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Movement : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
-    public float movementSpeed = 4;
+    public float movementSpeed = 15;
     public Vector3 locationSaver;
     [SerializeField] GameObject popUpText;
     [SerializeField] GameObject storeHUD;
