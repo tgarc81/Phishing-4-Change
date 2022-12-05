@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
    [SerializeField]public  Text dayCounter;
    [SerializeField] public Text moneyCount;
    [SerializeField] public Text moneyCountForStore;
+   [SerializeField] public GameObject controls;
     public int fishPop;
     public int dayNumber = 1;
     public int caughtFish;
@@ -205,7 +206,15 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Alex P");
     }
 
+    public void OpeneControls()
+    {
+        controls.SetActive(true);
+    }
 
+    public void CloseControls()
+    {
+        controls.SetActive(false);
+    }
 
     public void LoadInstructions()
     {

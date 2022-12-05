@@ -11,6 +11,7 @@ TagManager:
   - Rod
   - boat
   - BoatLocation
+  - Controls
   layers:
   - Default
   - TransparentFX
