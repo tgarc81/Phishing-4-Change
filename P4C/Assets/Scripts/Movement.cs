@@ -68,26 +68,47 @@ public class Movement : MonoBehaviour
         // Placement Controls-----------------------------------------------------
         if (trapTrigger && Input.GetKeyDown(KeyCode.T))
         {
-            trapSpot.SetActive(false);
-            PlaceTrap(locationSaver);
-            trapTrigger = false;
-            popUpText.gameObject.SetActive(false);
+            if (gameManager.NumOfTraps > 0)
+            {
+                trapSpot.SetActive(false);
+                PlaceTrap(locationSaver);
+                trapTrigger = false;
+                popUpText.gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("NOT ENOUGH TRAPS :(");
+            }
         }
-
+        
         if (rodTrigger && Input.GetKeyDown(KeyCode.R))
         {
-            rodSpot.SetActive(false);
-            PlaceRod(locationSaver, new Quaternion(0, 180, 0, 1));
-            rodTrigger = false;
-            popUpText.gameObject.SetActive(false);
+            if (gameManager.NumOfRod > 0)
+            {
+                rodSpot.SetActive(false);
+                PlaceRod(locationSaver, new Quaternion(0, 180, 0, 1));
+                rodTrigger = false;
+                popUpText.gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("NOT ENOUGH RODS :(");
+            }
         }
 
         if (boatTrigger && Input.GetKeyDown(KeyCode.B))
         {
-            boatSpot.SetActive(false);
-            PlaceBoat(locationSaver);
-            boatTrigger = false;
-            popUpText.gameObject.SetActive(false);
+            if (gameManager.NumOfBoat > 0)
+            {
+                boatSpot.SetActive(false);
+                PlaceBoat(locationSaver);
+                boatTrigger = false;
+                popUpText.gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("NOT ENOUGH BOATS :(");
+            }
         }
     }
 
@@ -140,28 +161,44 @@ public class Movement : MonoBehaviour
         void PlaceTrap(Vector3 location)
         {
             //Debug.Log("Try Instantiate");
-            gameManager.PlaceBasketTrap();
-            Instantiate(trap, location, Quaternion.identity);
-            for (int i = 0; i < gameManager.fishingTraps.Length; i++)
+            if (gameManager.NumOfTraps != 0)
             {
-                if (gameManager.fishingTraps[i] != null)
+                gameManager.NumOfTraps--;
+                gameManager.PlaceBasketTrap();
+                Instantiate(trap, location, Quaternion.identity);
+                for (int i = 0; i < gameManager.fishingTraps.Length; i++)
                 {
-                    gameManager.fishingTraps[i] = trap;
+                    if (gameManager.fishingTraps[i] != null)
+                    {
+                        gameManager.fishingTraps[i] = trap;
+                    }
                 }
+            }
+            else
+            {
+                Debug.Log("NOT ENOUGH TRAPS :(");
             }
         }
 
         void PlaceRod(Vector3 location, Quaternion rotation)
         {
             //Debug.Log("Try Instantiate");
-            gameManager.PlaceRod();
-            Instantiate(rod, location, rotation);
-            for (int i = 0; i < gameManager.fishingRods.Length; i++)
+            if (gameManager.NumOfRod != 0)
             {
-                if (gameManager.fishingRods[i] != null)
+                gameManager.NumOfRod--;
+                gameManager.PlaceRod();
+                Instantiate(rod, location, rotation);
+                for (int i = 0; i < gameManager.fishingRods.Length; i++)
                 {
-                    gameManager.fishingRods[i] = rod;
+                    if (gameManager.fishingRods[i] != null)
+                    {
+                        gameManager.fishingRods[i] = rod;
+                    }
                 }
+            }
+            else
+            {
+                Debug.Log("NOT ENOUGH RODS :(");
             }
         }
 
@@ -183,6 +220,45 @@ public class Movement : MonoBehaviour
     {
         storeHUD.gameObject.SetActive(false);
         gameHUD.gameObject.SetActive(true);
+    }
+
+    public void BuyTrap()
+    {
+        if (gameManager.money >= 2)
+        {
+            gameManager.money -= 2;
+            gameManager.NumOfTraps++;
+        }
+        else
+        {
+            Debug.Log("NOT ENOUGH MONEY");
+        }
+    }
+
+    public void BuyRod()
+    {
+        if (gameManager.money >= 7)
+        {
+            gameManager.money -= 7;
+            gameManager.NumOfRod++;
+        }
+        else
+        {
+            Debug.Log("NOT ENOUGH MONEY");
+        }
+    }
+
+    public void BuyBoat()
+    {
+        if (gameManager.money >= 20)
+        {
+            gameManager.money -= 20;
+            gameManager.NumOfBoat++;
+        }
+        else
+        {
+            Debug.Log("NOT ENOUGH MONEY");
+        }
     }
 }
 

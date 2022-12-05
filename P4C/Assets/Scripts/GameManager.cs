@@ -25,12 +25,38 @@ public class GameManager : MonoBehaviour
     public GameObject[] fishingRods;
     public GameObject[] fishingBoats;
 
+    private int numOfTraps;
+    private int numOfRod;
+    private int numOfBoat;
+
+    public int NumOfTraps
+    {
+        get { return numOfTraps; }
+        set { numOfTraps = value; }
+    }
+
+    public int NumOfRod
+    {
+        get { return numOfRod; }
+        set { numOfRod = value; }
+    }
+
+    public int NumOfBoat
+    {
+        get { return numOfBoat; }
+        set { numOfBoat = value; }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
         fishPop = 500;
         dayNumber = 1;
         money = 0;
+        numOfTraps = 2;
+        numOfRod = 1;
+        numOfBoat = 0;
         //caughtFish = 0;
         dayEnd = false;
 
@@ -56,10 +82,26 @@ public class GameManager : MonoBehaviour
 
         if (dayEnd == true)
         {
+            if (numOfTraps < 2)
+            {
+                numOfTraps = 2;
+            }
+
+            if (numOfRod < 1)
+            {
+                numOfRod = 1;
+            }
+
+            if (numOfBoat == 0)
+            {
+                numOfBoat = 0;
+            }
+            
             dayNumber++;
             FishPopulationChange();
             dayEnd = false;
             caughtFish = 0;
+
 
             fishingTraps = GameObject.FindGameObjectsWithTag("Trap");
             fishingRods = GameObject.FindGameObjectsWithTag("Rod");
